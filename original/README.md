@@ -37,15 +37,30 @@
 
 ```
 fsi/
-├── main.py           # 入口: 窗口 + 事件循环 + 渲染
-├── config.py         # 全局参数配置
-├── particles.py      # 粒子生成 & 边界 ψ 计算 (纯 NumPy)
-├── simulation.py     # Taichi 引擎: WCSPH + 刚体 + 可视化
+├── main.py                   # 入口: 窗口 + 事件循环 + 渲染
+├── config.py                 # 全局参数配置
+├── particles.py              # 粒子生成 & 边界 ψ 计算 (纯 NumPy)
+├── simulation.py             # Taichi 引擎: WCSPH + 刚体 + 可视化
 ├── collision.py              # 刚体碰撞: SAT 检测 + Sequential Impulse (CPU)
 ├── validate_hydrostatic.py   # 正确性验证: 静水压力对比解析解
 ├── requirements.txt          # 依赖
-└── README.md
+├── README.md
+│
+├── original/          # 初始版本 (r=0.012, ~1000 粒子, 低分辨率)
+├── taichi_parallel/   # 高分辨率版本 (r=0.005, ~20000 粒子, 矩形刚体)
+├── circle_fsi/        # 圆形刚体版本 (无刚体间碰撞)
+└── rigid_body/        # 纯刚体模拟 (无流体, box2d-lite 风格)
 ```
+
+### 版本对比
+
+| 目录 | 刚体形状 | 流体 | 粒子数 | 刚体碰撞 | 说明 |
+|------|----------|------|--------|----------|------|
+| `fsi/`（本目录）| 矩形 | WCSPH | ~1 000 | SAT+SI | 主演示版本 |
+| `original/` | 矩形 | WCSPH | ~1 000 | SAT+SI | 起点版本，代码最简 |
+| `taichi_parallel/` | 矩形 | WCSPH | ~20 000 | SAT+SI | 高分辨率，效果最好 |
+| `circle_fsi/` | 圆形 | WCSPH | ~20 000 | 无 | 圆球漂浮演示 |
+| `rigid_body/` | 矩形 | 无 | — | SAT+SI | 纯碰撞测试，无流体 |
 
 ### 模块职责
 
