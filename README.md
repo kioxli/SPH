@@ -8,7 +8,7 @@
 
 > 圆形刚体漂浮演示 (circle_fsi)
 
-https://github.com/kioxli/SPH/raw/main/circle_fsi/demo.mp4
+<video src="https://github.com/user-attachments/assets/c81e71ec-b2d6-4c25-afb8-68310163f4d7" controls width="700"></video>
 
 ## 子项目总览
 
